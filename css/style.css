@@ -29,13 +29,6 @@ body{
 .my-height90{
    max-height: 90vh;
 }
-/*************************margin e padding*/
-.my-margin{
-    margin: 0 !important;
-}
-.my-Padding0{
-    padding: 0!important;
-}
 
 /*******************fatti per debug bootraspt*/
 h4.my-Padding0{
@@ -46,6 +39,14 @@ p.p-2{
     font-size: 12px;
     padding: 0 1rem !important;
     margin: 0 !important;
+}
+
+.my-margin{
+    margin: 0 !important;
+}
+
+.my-Padding0{
+    padding: 0!important;
 }
 
 /*******************misure vari font*/
