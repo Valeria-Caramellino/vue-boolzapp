@@ -180,7 +180,7 @@ createApp({
       }
     },
     methods: {
-        changeCurrentContactChat(indice){
+        changeChat(indice){
             this.index = indice;
             console.log(indice)
         }
