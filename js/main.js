@@ -1,4 +1,4 @@
-console.log("ciao")
+
 
 const {createApp} = Vue
 createApp({
@@ -180,7 +180,14 @@ createApp({
       }
     },
     methods: {
-        
+        changeCurrentContactChat(indice){
+            this.index = indice;
+            console.log(indice)
+        }
+    },
+    mounted() {
+        console.log("ciao")
     }
+
 
 }).mount('#app')

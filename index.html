@@ -68,8 +68,8 @@
                 <!--sezione contatti-->
                 <section class="bg-light areaContatti overflow">
                     <div class="row justify-content-center w-100">
-                        <template v-for="(datoCorrente, indice) in contacts">
-                            <div class="m-2 d-flex col-10 bg-light mt-0 border border-warning hover justify-content-between">
+                        <template v-for="(datoCorrente, indice) in contacts" >
+                            <div class="m-2 d-flex col-10 bg-light mt-0 border border-warning hover justify-content-between" @click="changeCurrentContactChat(indice)" >
                                 <div class="col-9 d-flex align-items-center">
                                     <div class="my-width d-flex align-items-center ">
                                         <img class="rounded-circle w-100 m-2"
@@ -101,12 +101,12 @@
                             <div class="m-2 d-flex">
                                 <div class="my-width d-flex align-items-center">
                                     <img class="rounded-circle w-100"
-                                    :src="contacts[0].avatar"
+                                    :src="contacts[index].avatar"
                                     alt=""
                                     />
                                 </div>   
                                 <div class="col-10">
-                                    <h4 class="p-2 my-margin my-Padding0">{{contacts[0].name}}</h4>
+                                    <h4 class="p-2 my-margin my-Padding0">{{contacts[index].name}}</h4>
                                     <p class="p-2 ">Ultimo accesso oggi alle 12.00</p> 
                                 </div>
                             </div>
