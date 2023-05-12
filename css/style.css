@@ -111,4 +111,14 @@ div.textSinistra>div {
 .overflow{
     overflow-y: scroll;
 }
+/*********************hover*/
+.hover:hover{
+    background-color: brown !important;
+    color: white;
+    border: 1px solid black !important;
+}
 
+/************************break*/
+.break{
+    word-wrap: break-word;
+}
