@@ -13,12 +13,11 @@
     --Twhite: #ffffff;
 }
 /*************************************body*/
-/*
 body{
-    background: #FFFFFF;
-    background: linear-gradient(to top, #FFFFFF 88%, #009688 88%);
+    
+    background:no-repeat linear-gradient(#009688 20%,  #FFFFFF 20% 80%);
 }
-*/
+
 
 
 /*********************grandezze*/
