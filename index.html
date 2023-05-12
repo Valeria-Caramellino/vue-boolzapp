@@ -58,7 +58,7 @@
                 </section>
                 <!--sezione search-->
                 <section class="d-flex bg-light">
-                    <div class="col-2 d-flex align-items-center justify-content-end">
+                    <div class="col-1 d-flex align-items-center justify-content-end">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <div class="col-9">
@@ -69,8 +69,8 @@
                 <section class="bg-light areaContatti overflow">
                     <div class="row justify-content-center w-100">
                         <template v-for="(datoCorrente, indice) in contacts">
-                            <div class="m-2 d-flex col-10 bg-light mt-0 border border-warning hover">
-                                <div class="col-10 d-flex align-items-center">
+                            <div class="m-2 d-flex col-10 bg-light mt-0 border border-warning hover justify-content-between">
+                                <div class="col-9 d-flex align-items-center">
                                     <div class="my-width d-flex align-items-center ">
                                         <img class="rounded-circle w-100 m-2"
                                         :src="datoCorrente.avatar"
@@ -78,12 +78,12 @@
                                         />
                                     </div>   
                                     <div class="">
-                                        <h4 class="p-2 my-margin my-Padding0">{{datoCorrente.name}}</h4>
-                                        <p class="p-2 ">Ultimo messaggio inviato</p> 
+                                        <h5 class="p-2 my-margin my-Padding0">{{datoCorrente.name}}</h5>
+                                        <p class="p-2 ">{{datoCorrente.messages[datoCorrente.messages.length-1].message}}</p> 
                                     </div> 
                                 </div>
-                                <div class="col-1 d-flex align-items-start">
-                                    <p class="p-2">12.00</p>
+                                <div class="col-2 d-flex align-items-start">
+                                    <p class="p-2 fDate">{{datoCorrente.messages[datoCorrente.messages.length-1].date}}</p>
                                 </div>
                             </div>
                         </template>
