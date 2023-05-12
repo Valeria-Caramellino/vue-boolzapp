@@ -150,7 +150,7 @@
                         😁
                     </div>
                     <div class="col-8">
-                        <input type="text" class="w-100" placeholder="Scrivi un messaggio">
+                        <input type="text" class="w-100" placeholder="Scrivi un messaggio" v-model="newInput.message" tabindex="0" @keyUp.enter=" addTextMessage()">
                     </div>
                     <div class="col-1">
                         <i class="fa-solid fa-microphone"></i>

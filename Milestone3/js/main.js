@@ -12,6 +12,14 @@ createApp({
                 avatar: './img/avatar_io.jpg',
                 visible: true,
             },
+        newInput:{
+            message: "",
+            status: 'sent'
+        },
+        okInput:{
+            message:"ok",
+            status:'received'
+        },
         contacts: [
             
             {
@@ -182,8 +190,19 @@ createApp({
     methods: {
         changeChat(indice){
             this.index = indice;
-            console.log(indice)
-        }
+        },
+        addTextMessage(){
+            let addMess = { ...this.newInput }
+            this.contacts[this.index].messages.push(addMess)
+            this.newInput.message=""
+            
+            setTimeout(() => {
+                let addOk = { ...this.okInput }
+                this.contacts[this.index].messages.push(addOk)
+                this.okInput.message="ok"
+            }, 1000)
+        },
+        
     },
     mounted() {
         console.log("ciao")
