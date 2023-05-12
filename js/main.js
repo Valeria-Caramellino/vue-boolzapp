@@ -4,6 +4,8 @@ const {createApp} = Vue
 createApp({
     data() {
       return {
+        classRight:"textDestra",
+        classLeft:"textSinistra",
         index:0,
         principale :{
                 name: 'Valeria',
