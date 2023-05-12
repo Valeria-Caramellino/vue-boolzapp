@@ -124,24 +124,25 @@
                 <!--campo messaggi-->
                 <section class="row areaMessaggi textMessaggi justify-content-center overflow">
                     <div class="col-11">
-                        <div class="textDestra">
-                            <div class="break">
-                            <p class="p-2">Hai portato a spasso il cane?</p>
-                            </div>
-                        </div>
-                        <div :class="classRight">
-                            <div class="">
-                                <p class="p-2">Ricordati di stendere i panni</p>
-                            </div>
-                        </div>
-                        <div :class="classLeft">
-                            <div class="">
-                                <p class="p-2">Tutto fatto!</p>
-                            </div>
-                        </div>
-                        
+                        <template v-for="message in contacts[index].messages"> 
+                            <!--messaggi inviati-->
+                            <template v-if="message.status === 'sent'">
+                               <div :class="classRight">
+                                    <div class="break">
+                                        <p class="p-2">{{message.message}}</p>
+                                    </div>
+                                </div> 
+                            </template>
+                            <!--messaggi ricevuti-->
+                            <template v-else>
+                                <div :class="classLeft">
+                                    <div class="break">
+                                        <p class="p-2">{{message.message}}</p>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
                     </div>
-                   
                 </section>
                 <!--fondo-->
                 <section class="row justify-content-center Header align-items-center">
