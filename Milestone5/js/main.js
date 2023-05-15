@@ -216,7 +216,7 @@ createApp({
        
         deleteMessage(indice) {
             this.contacts[this.index].messages.splice(indice, 1);
-            //this.contacts.visible = true;
+        
         },
     }
 }).mount('#app')
