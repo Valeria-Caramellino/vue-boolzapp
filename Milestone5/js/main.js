@@ -4,12 +4,13 @@ const {createApp} = Vue
 createApp({
     data() {
       return {
-        classRight:"textDestra",
-        classLeft:"textSinistra",
+        classRight:"textRight",
+        classLeft:"textLeft",
         index:0,
         filterText: '',
-        classVisible: false,
-        principale :{
+        lastAccess:luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss') ,
+        elementVisibility: false,
+        mainContact :{
                 name: 'Valeria',
                 avatar: './img/avatar_io.jpg',
                 visible: true,
@@ -207,19 +208,16 @@ createApp({
                 this.okInput.message="ok"
             }, 1000)
         },
-        contattoSelezionato(indice){
-            return (this.index == indice) ? "attivo": ""
+        selectedContact(indice){
+            return (this.index == indice) ? "activeProfile": ""
         },
-        FormatoDate(date) {
+        dateFormatMessage(date) {
             return date.split(' ')[1].slice(0, -3);
         },
        
         deleteMessage(indice) {
             this.contacts[this.index].messages.splice(indice, 1);
-            this.classVisible = false;
-    },
-}
-   
+            this.elementVisibility = false;
+        },
+    }
 }).mount('#app')
-
-/*problemi eliminazione messaggio mi elimina il primo mess non quello selezionato*/

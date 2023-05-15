@@ -4,34 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Boolzapp</title>
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    />
-     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
     <section id="app">
       <div class="container">
         <div class="row mt-4 mb-4 my-height90">
 <!--parte sinistra-->
-            <div class="col-4 rosso my-Padding0">
+            <div class="col-4 my-Padding0">
                 <!--testata-->
-                <section
-                class="d-flex justify-content-between align-items-center Header col-12"
-                >
+                <section class="d-flex justify-content-between align-items-center Header col-12">
                 <!--parte sinistra-->
                     <div class="col-5">
                         <div class="m-2 d-flex">
                             <div class="my-width d-flex align-items-center">
-                                <img class="rounded-circle w-100"
-                                :src="principale.avatar"
-                                alt=""
-                                />
-                                <h4 class="p-2 my-Padding0">{{principale.name}}</h4>
+                                <img class="rounded-circle w-100" :src="mainContact.avatar" alt="avatar"/>
+                                <h4 class="p-2 my-Padding0">{{mainContact.name}}</h4>
                             </div>
                         </div>
                     </div>
@@ -60,35 +53,30 @@
                         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
                     </div>
                     <div class="col-9">
-                        
                         <input type="text" class="w-100 m-2" placeholder="Cerca o inizia nuova chat" v-model=" filterText">
                     </div>
                 </section>
                 <!--sezione contatti-->
                 <section class="bg-light areaContatti overflow">
                     <div class="row justify-content-center w-100">
-                        <template v-for="(datoCorrente, indice) in contacts" >
-                        <template v-if="datoCorrente.name.toLowerCase().includes(filterText)">
-                            <div class="m-2 d-flex col-10 mt-0 border border-warning hover justify-content-between" @click="changeChat(indice)" :class="contattoSelezionato(indice)">
-                                <div class="col-9 d-flex align-items-center">
-                                    <div class="my-width d-flex align-items-center ">
-                                        <img class="rounded-circle w-100 m-2"
-                                        :src="datoCorrente.avatar"
-                                        alt=""
-                                        />
-                                    </div>   
-                                    <div class="">
-                                        <h5 class="p-2 my-margin my-Padding0">{{datoCorrente.name}}</h5>
-                                        <p class="p-2 ">{{datoCorrente.messages[datoCorrente.messages.length-1].message}}</p> 
-                                    </div> 
-                                </div>
-                                <div class="col-2 d-flex align-items-start">
-                                    <p class="p-2 fDate">{{datoCorrente.messages[datoCorrente.messages.length-1].date}}</p>
-                                </div>
+                    <template v-for="(datoCorrente, indice) in contacts" >
+                    <template v-if="datoCorrente.name.toLowerCase().includes(filterText)">
+                        <div class="m-2 d-flex col-10 mt-0 border border-dark hover justify-content-between" @click="changeChat(indice)" :class="selectedContact(indice)">
+                            <div class="col-9 d-flex align-items-center">
+                                <div class="my-width d-flex align-items-center ">
+                                    <img class="rounded-circle w-100 m-2" :src="datoCorrente.avatar" alt="avatar"/>
+                                </div>   
+                                <div>
+                                    <h5 class="p-2 my-margin my-Padding0">{{datoCorrente.name}}</h5>
+                                    <p class="p-2 ">{{datoCorrente.messages[datoCorrente.messages.length-1].message}}</p> 
+                                </div> 
                             </div>
-                        </template>
-                        </template>
-    
+                            <div class="col-2 d-flex align-items-start">
+                                <p class="p-2 fDate">{{datoCorrente.messages[datoCorrente.messages.length-1].date}}</p>
+                            </div>
+                        </div>
+                    </template>
+                    </template>
                     </div>
                 </section>
             </div>
@@ -101,14 +89,11 @@
                         <div class="col-5">
                             <div class="m-2 d-flex">
                                 <div class="my-width d-flex align-items-center">
-                                    <img class="rounded-circle w-100"
-                                    :src="contacts[index].avatar"
-                                    alt=""
-                                    />
-                                </div>   
+                                    <img class="rounded-circle w-100" :src="contacts[index].avatar" alt="avatar"/>
+                                </div>
                                 <div class="col-10">
                                     <h4 class="p-2 my-margin my-Padding0">{{contacts[index].name}}</h4>
-                                    <p class="p-2 ">Ultimo accesso oggi alle 12.00</p> 
+                                    <p class="p-2 ">Ultimo accesso il {{lastAccess}}</p> 
                                 </div>
                             </div>
                         </div>
@@ -126,45 +111,42 @@
                 <section class="row areaMessaggi textMessaggi justify-content-center overflow">
                     <div class="col-11">
                         <template v-for="(message , indice) in contacts[index].messages"> 
-                            <!--messaggi inviati-->
-                            <template v-if="message.status === 'sent'">
-                               <div :class="classRight">
-                                    <div class="break d-flex">
-                                        <div class="col-10">
-                                            <p class="p-2">{{message.message}}</p>
-                                            <p class="fDate p-2">{{FormatoDate(message.date)}}</p> 
-                                        </div>
-                                       <!-- <div @click="deleteMessage(indice)">x</div>
-                                      -->
-                                        <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </template>
-                            <!--messaggi ricevuti-->
-                            <template v-else>
-                                <div :class="classLeft">
-                                    <div class="break d-flex">
-                                        <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-10">
-                                            <p class="p-2">{{message.message}}</p>
-                                            <p class="fDate p-2">{{FormatoDate(message.date)}}</p>
-                                        </div>
-                                        
-                                    </div>
+                        <!--messaggi inviati-->
+                        <template v-if="message.status === 'sent'">
+                        <div :class="classRight">
+                            <div class="break d-flex">
+                                <div class="col-10">
+                                    <p class="p-2">{{message.message}}</p>
+                                    <p class="fDate p-2">{{dateFormatMessage(message.date)}}</p> 
                                 </div>
-                            </template>
+                                <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
+                        </template>
+                        <!--messaggi ricevuti-->
+                        <template v-else>
+                        <div :class="classLeft">
+                            <div class="break d-flex">
+                                <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-10">
+                                    <p class="p-2">{{message.message}}</p>
+                                    <p class="fDate p-2">{{dateFormatMessage(message.date)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
                         </template>
                     </div>
                 </section>
-                <!--fondo-->
+                <!--scrittura messaggi-->
                 <section class="row justify-content-center Header align-items-center">
                     <div class="col-1 d-flex justify-content-center">
                         😁
