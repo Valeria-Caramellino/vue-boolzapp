@@ -9,7 +9,6 @@ createApp({
         index:0,
         filterText: '',
         lastAccess:luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss') ,
-        elementVisibility: false,
         mainContact :{
                 name: 'Valeria',
                 avatar: './img/avatar_io.jpg',
@@ -217,7 +216,7 @@ createApp({
        
         deleteMessage(indice) {
             this.contacts[this.index].messages.splice(indice, 1);
-            this.elementVisibility = false;
+            //this.contacts.visible = true;
         },
     }
 }).mount('#app')
