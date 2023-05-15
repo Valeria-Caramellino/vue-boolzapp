@@ -8,7 +8,7 @@ createApp({
         classLeft:"textSinistra",
         index:0,
         filterText: '',
-        
+        classVisible: false,
         principale :{
                 name: 'Valeria',
                 avatar: './img/avatar_io.jpg',
@@ -214,11 +214,11 @@ createApp({
             return date.split(' ')[1].slice(0, -3);
         },
        
-        removeMessage(indice){
-            
-            this.contacts[this.index].messages.splice(indice,1);
-        }
+        deleteMessage(indice) {
+            this.contacts[this.index].messages.splice(indice, 1);
+            this.classVisible = false;
     },
+}
    
 }).mount('#app')
 

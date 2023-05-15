@@ -134,9 +134,11 @@
                                             <p class="p-2">{{message.message}}</p>
                                             <p class="fDate p-2">{{FormatoDate(message.date)}}</p> 
                                         </div>
+                                       <!-- <div @click="deleteMessage(indice)">x</div>
+                                      -->
                                         <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a @click="removeMessage" class="dropdown-item" href="#">Elimina</a></li>
+                                                <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -145,9 +147,17 @@
                             <!--messaggi ricevuti-->
                             <template v-else>
                                 <div :class="classLeft">
-                                    <div class="break">
-                                        <p class="p-2">{{message.message}}</p>
-                                        <p class="fDate p-2">{{FormatoDate(message.date)}}</p>
+                                    <div class="break d-flex">
+                                        <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a @click="deleteMessage(indice)" class="dropdown-item" href="#">Elimina</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="p-2">{{message.message}}</p>
+                                            <p class="fDate p-2">{{FormatoDate(message.date)}}</p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </template>
